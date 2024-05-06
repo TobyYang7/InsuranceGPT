@@ -1,5 +1,5 @@
 {
-  "device": "cuda:0",
+  "device": "cuda:1",
   "data": "US",
   "train_val_ratio": [0.6, 0.2],
   "lstm_hidden_size": 256,

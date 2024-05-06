@@ -1,7 +1,7 @@
 import time
 import torch
 import argparse
-from GRU import GRUNet
+from model.GRU import GRUNet
 import util
 import argparse
 import random
@@ -28,7 +28,7 @@ def main(delay_index=0):  # Select arr or dep
         print('Arrival')
     else:
         print('Departure')
-    with open('configs_c.json', 'r') as f:
+    with open('configs_u.json', 'r') as f:
         config = json.load(f)
 
     # Create an empty argparse Namespace object to store the configuration settings
@@ -108,9 +108,9 @@ def main(delay_index=0):  # Select arr or dep
         loss = util.test_error(yhat, label)[0]  # Cal based on MAE
 
         if delay_index == 0:
-            writer.add_scalar('Arr_loss/train', loss, ep)
+            writer.add_scalar('GRU/arr_loss', loss, ep)
         if delay_index == 1:
-            writer.add_scalar('Dep_loss/train', loss, ep)
+            writer.add_scalar('GRU/dep_loss', loss, ep)
 
         prediction2 = store_result(yhat, label, 2)
         amae3.append(prediction2[0])
